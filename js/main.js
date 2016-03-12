@@ -10,7 +10,7 @@
         var spcProgBarEnabled = true;  //zop
         
         var SPACE_TIME = 0;
-        var DOT_DURATION = 200;
+        var DOT_DURATION = 250;
         var DASH_DURATION = 0;   // calculated from dot_duration
 
    //var dotDuration = morseCode.getDotDuration();
