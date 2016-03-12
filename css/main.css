@@ -11,6 +11,13 @@
             padding: 0px 7px 0px 7px ;
             }
 
+            div.output span.characters {
+            font-size: 20px ;
+            line-height: 30px ;
+            background-color: gold ;
+            display: inline-block ;
+            padding: 0px 7px 0px 7px ;
+            }
 
 /* The 17 standard colors are: aqua, black, blue, fuchsia, gray, grey, green, lime, */
 /* maroon, navy, olive, purple, red, silver, teal, white and yellow. */
@@ -29,23 +36,35 @@
             }
 */
 
-           span.yellowMsg {
+       /*    span.warning1 { */
+            .warning1 {
             background-color: yellow ;
             display: inline-block ;
             padding: 0px 7px 0px 7px ;
             }
 
-           span.dot {
-            background-color: red ;
+			.warning2 {
+            background-color: aqua ;
             display: inline-block ;
             padding: 0px 7px 0px 7px ;
             }
 
+           span.dot {
+            font-size: 20px;
+            line-height: 30px ;
+            background-color: red ;
+            display: inline-block ;
+            padding: 0px 20px 0px 20px ; 
+            }
+
 
            span.dash {
+            font-size: 20px;
+            line-height: 30px ;
             background-color: lime ;
+             
             display: inline-block ;
-            padding: 0px 7px 0px 7px ;
+            padding: 0px 7px 0px 7px ; 
             }
 
      /* ---------------------------  */

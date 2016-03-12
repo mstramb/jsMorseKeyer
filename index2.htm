@@ -21,7 +21,7 @@
 
 </head>
 <body>
-    <h2> Decoding Morse Code With JavaScript (sound Added)    </h1>
+    <h1> Decoding Morse Code With JavaScript (sound Added)    </h1>
 <p>Orginal Code by <a href="http://www.bennadel.com/blog/2267-decoding-morse-code-with-javascript.htm">Ben Nadel</a></p>
 
 <a href="https://codeload.github.com/mstramb/jsMorseKeyer/zip/master">download</a>
@@ -29,6 +29,12 @@
 <p>
 
 
+<!--
+    <button  id="but2"
+             style="width:50px;height:50px"
+					   onclick="var now = 0; progressing(now);">
+						but1</button>
+-->
 SoundFreq:<input type="text" id="freqInput" value="1000" style="width:30px"></input>
 <!-- &nbsp  <span id="curBeepFreq">0</span> -->
 &nbsp&nbsp
@@ -46,14 +52,14 @@ WordTime:<span id="curWordTime">0</span>
 <button  id="but1"
              style="width:50px;height:50px"
 					   onclick="toggleSpcProgBar()">
-					   Bars
+					   SpcBar
 						</button>
 
 
     <!-- BEGIN: Output. -->
 <div class="output">
 <b>Speed</b>
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  <span class="dot"></span> &nbsp&nbsp&nbsp&nbsp   <span class="dash"></span>
 
 <br>
 <!--  Char:<span class="SPDchar">chr</span> -->
@@ -66,12 +72,12 @@ WordTime:<span id="curWordTime">0</span>
 <!--  TimeCount:<span class="sptimecount">000</span> -->
 WordTimeout:<progress id="wordTimeOutBar" value="0" max="100" style="width:200px;"></progress>
 <span id="currWordTimeout">000</span>
-&nbsp&nbsp&nbsp<span class="warning1" id="wordTimedOutMsg"></span> 
+&nbsp&nbsp&nbsp<span class="yellowMsg" id="wordTimedOutMsg"></span> 
 <!-- &nbsp&nbsp -->
 <p>
-CharTimeout:<progress id="charTimeOutBar" value="0" max="100" style="width:800px;"></progress>
+CharTimeout:<progress id="charTimeOutBar" value="0" max="100" style="width:100px;"></progress>
 <span id="currCharTimeout">000</span>
-&nbsp&nbsp&nbsp<span class="warning2" id="charTimedOutMsg"></span> 
+&nbsp&nbsp&nbsp<span class="yellowMsg" id="charTimedOutMsg"></span> 
 
 <p>
 
@@ -79,18 +85,23 @@ CharTimeout:<progress id="charTimeOutBar" value="0" max="100" style="width:800px
 
 <h4>Your Message (Press any key to interact): </h4>
 <h2> <div class="msg" id="fox1">yyz The Quick Brown Fox Jumps Over The Lazy Dog</div> </h2>
-<p>
-<span class="dot"></span> &nbsp&nbsp&nbsp&nbsp   <span class="dash"></span>
-<br>       
+       
  <span class="message">
 	<!-- mike -->
-<p>
-    <span class="characters"> <!-- This will be populated with the decoded Morse. -->  </span>
-    
-  <span class="possibleCharacters">  <!-- This will be populated dynamically. -->    </span>
+<p><p>
+
+    <span class="characters">
+      <!-- This will be populated by the user. -->
+      </span>
+      <span class="possibleCharacters">
+      <!-- This will be populated dynamically. -->
+        </span>
    </p>
  </div>
-  
+    <!-- END: Output. -->
+
+    <!-- BEGIN: Alphabet. -->
+
 <p>
 
     <div class="alphabet">
@@ -271,15 +282,6 @@ CharTimeout:<progress id="charTimeOutBar" value="0" max="100" style="width:800px
                 function( event ){
                 // mike
 
-				  var now = 0; 
-                  if(spcProgBarEnabled) {
-                   //timerId = setInterval(progressing(now),SPACETIME );
-                   // timerWId = setInterval(wordProgressBarFun(now),SPACETIME );
-                      itw =  setInterval(wordProgressBarFun(now),SPACE_TIME );
-                      itc = setInterval(charProgressBarFun(now),glb_dotDuration);
-                  }   
-
-
                 //console.log("(morse) keyup  event.keyCode : " + event.keyCode)
 
 
@@ -344,7 +346,7 @@ CharTimeout:<progress id="charTimeOutBar" value="0" max="100" style="width:800px
                     resolveTimer = setTimeout(
                         function(){
                             // Try to resolve the sequence.
-                           try {
+                            try {
                                 // Get the character respresented by
                                 // the current sequence.
                                 var character = morseCode.resolveSequence();
@@ -354,15 +356,11 @@ CharTimeout:<progress id="charTimeOutBar" value="0" max="100" style="width:800px
                                     dom.characters.text() + character
                                 );
 
-                            }
-
-							catch (e) {
+                            } catch (e) {
                                 // Reset the sequence - something
                                 // went wrong with the user's input.
-                               morseCode.resetSequence();
+                                morseCode.resetSequence();
                             }
-
-
                             // Clear the possible matches.
                             dom.possibleCharacters.empty();
 													 // mike
@@ -371,7 +369,18 @@ CharTimeout:<progress id="charTimeOutBar" value="0" max="100" style="width:800px
 
 					        // Set a timer to add a new space to the
                             // message.
-                             /*
+
+                            // domm.progress1.val(100)
+
+									// zop
+
+                                   //
+                                // var timerWId = 0 ;
+                                // var timerC = 0;
+
+								// intervalTimerWordProgressBar = 0 ;
+								// intervalTimerCharProgressBar = 0 ;
+ 
 								 var now = 0; 
                                  if(spcProgBarEnabled) {
                                    //timerId = setInterval(progressing(now),SPACETIME );
@@ -379,7 +388,6 @@ CharTimeout:<progress id="charTimeOutBar" value="0" max="100" style="width:800px
                                      itw =  setInterval(wordProgressBarFun(now),SPACE_TIME );
                                      itc = setInterval(charProgressBarFun(now),glb_dotDuration);
                                 }   
-                              */
 								spaceTimer = setTimeout(
                                 function(){
                                     // Add a "space".

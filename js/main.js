@@ -6,7 +6,7 @@
         var FREQDOT  = 900.0;
         var FREQDASH = 300.0;
         var tcount = 0;
-        var BeepFreq = 1000;
+        var BeepFreq = 660;
         var spcProgBarEnabled = true;  //zop
         
         var SPACE_TIME = 0;
@@ -28,6 +28,9 @@
 function updateHTMLFields(){
   console.log("updateHTMLFields glb_WPM:" + glb_WPM);
   $('#dspWpm').html(glb_WPM);
+  
+$('#freqInput').val(BeepFreq);
+
 }
   function toggleSpcProgBar() {
            console.log("(main.js)(toggleSpcProgBar)");
@@ -43,12 +46,13 @@ $(document).ready(function() {
   });
 
   $('#freqInput').bind('input',inputFreqHandler);
-
   $('#dotTimeInput').bind('input',inputDotTimeHandler);
 
   $('#curDotTime').html(DOT_DURATION);
   $('#curDashTime').html(DASH_DURATION);
   $('#curSpaceTime').html(SPACE_TIME);
+
+ updateHTMLFields();
 
 }); 
 

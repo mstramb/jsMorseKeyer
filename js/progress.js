@@ -6,6 +6,8 @@
 
 var wordTimeout = 8;  // for SPACETIME 2500
 //var barr = '';
+
+const WORDTIMEOUTMSG = "Word Timed Out";
 function wordProgressBarFun(al) {
 //  console.log("(wordProgressBarFun) al:"+al);
   
@@ -36,12 +38,15 @@ function wordProgressBarFun(al) {
   clearTimeout(update);
   //var spaceTimedOutMsg = document.getElementById('spaceTimedOutMsg');
   // spaceTimedOutMsg.innerHTML = "Space Timeout";
- $('#spaceTimedOutMsg').html("Space Timeout");
+ $('#wordTimedOutMsg').html(WORDTIMEOUTMSG);
 
 // var p = setInterval(uIPause(0),5);
- $('#spaceTimedOutMsg').html('');  // clear spaceTimer message 'Space Timeout'
+ $('#spaceTimedOutMsg').html('');  // clear spaceTimer message
  $('#wordTimeOutBar').val(0);
  $('#charTimeOutBar').val(0);
+
+  $('#wordTimedOutMsg').html('');
+  $('#charTimedOutMsg').html('');
 
 // console.log("setInterval(uIPause  p:"+p);
   
@@ -53,9 +58,12 @@ function uIPause(v){
  var update = setTimeout("uIPause("+ v + ")",100);
   if(v == 100){
     clearTimeout(update);
- $('#spaceTimedOutMsg').html('');  // clear spaceTimer message 'Space Timeout'
+ $('#spaceTimedOutMsg').html('');  // clear spaceTimer message 
  $('#wordTimeOutBar').val(0);
  $('#charTimeOutBar').val(0);
+
+$('#charTimedOutMsg').html('');
+
   console.log("uIPause DONE v:" + v);
  }
 }
@@ -63,8 +71,12 @@ function uIPause(v){
 //////////////////////////////////////////
 
 var wordTimeout = 20;
+var CFG = 250.0 ; // character timeout divider factor make accessible to browser
 function charProgressBarFun(al) {
-  //console.log("(charProgressBarFun)");
+ var timeout = glb_dotDuration / CFG ; 
+// console.log("(charProgressBarFun) glb_dotDuration:" + glb_dotDuration + " timeout:"+timeout + " CFG:"+CFG);
+
+
 
   //var bar = document.getElementById('charTimeOutBar');
    var bar = $('#charTimeOutBar')[0];
@@ -73,7 +85,9 @@ function charProgressBarFun(al) {
    al++;
   
  // var  t = glb_dotDuration / 10;
- var update = setTimeout("charProgressBarFun("+al+")",1);
+ //var update = setTimeout("charProgressBarFun("+al+")",1);
+
+var update = setTimeout("charProgressBarFun("+al+")",timeout);
 
  //console.log("(wordProgressBarFun) progTimeout:" + progTimeout);
 
@@ -82,8 +96,8 @@ function charProgressBarFun(al) {
   bar.value = 100;
   clearTimeout(update);
   //var spaceTimedOutMsg = document.getElementById('spaceTimedOutMsg');
-  // spaceTimedOutMsg.innerHTML = "Space Timeout";
- $('#spaceTimedOutMsg').html("Space Timeout");
+  
+ $('#charTimedOutMsg').html("Char Timeout");
   }
  }
 

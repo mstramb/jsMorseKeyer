@@ -9,7 +9,7 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext;
             nodes = [];
 
 //            masterGain.gain.value = 0.3;
-            masterGain.gain.value = 0.5;
+            masterGain.gain.value = 0.3;   // 0.5
             masterGain.connect(context.destination);
 
      //     playnoteUp(event.keyCode)
