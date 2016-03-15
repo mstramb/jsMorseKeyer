@@ -1,4 +1,5 @@
-// console.log("- main.js -")
+console.log("- main.js - v1.03");
+
      // mike
         var mikev = '' ;
         var FREQDOWN = 440.0;
@@ -6,11 +7,11 @@
         var FREQDOT  = 900.0;
         var FREQDASH = 300.0;
         var tcount = 0;
-        var BeepFreq = 660;
+        var BeepFreq = 1000;
         var spcProgBarEnabled = true;  //zop
         
         var SPACE_TIME = 0;
-        var DOT_DURATION = 250;
+        var DOT_DURATION = 180;  // 250
         var DASH_DURATION = 0;   // calculated from dot_duration
 
    //var dotDuration = morseCode.getDotDuration();
@@ -21,15 +22,23 @@
    var glb_dashDuration = 0;
    var glb_pauseDuration = 0;
 
+   var glb_wordTimedOutVal = 0;
+   var glb_charTimedOutVal = 0;
+
    //const
   var glb_WPM = 0;
   const WPMFACT = 1200;
 
+  var keyDownDate = 0;  // keydown start time , global so progress functions can access
+  var keyDownLast = 0;
+
 function updateHTMLFields(){
-  console.log("updateHTMLFields glb_WPM:" + glb_WPM);
+//  console.log("updateHTMLFields glb_WPM:" + glb_WPM);
   $('#dspWpm').html(glb_WPM);
   
 $('#freqInput').val(BeepFreq);
+//$('#dotTimeInput').val(DOT_DURATION);
+
 
 }
   function toggleSpcProgBar() {

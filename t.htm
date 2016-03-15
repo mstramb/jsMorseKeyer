@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+</head>
+<body>
+    <h2> Decoding Morse Code With JavaScript (sound Added)    </h1>
+<p>Orginal Code by <a href="http://www.bennadel.com/blog/2267-decoding-morse-code-with-javascript.htm">Ben Nadel</a></p>
+
+<a href="https://codeload.github.com/mstramb/jsMorseKeyer/zip/master">download</a>
+<a href="https://codeload.github.com/mstramb/jsMorseKeyer/zip/master">GitHub Source</a>
+
+<script>
+ 
+var elems = document.getElementsByTagName( 'a' );
+ console.log("elems.length:" + elems.length);
+for ( var i = 0; i < elems.length; i++ ) {
+   console.log("elems[i] :" + i +": " +elems[i]);
+  elems[ i ].addEventListener( 'click', function(e){
+  e.preventDefault();
+ //alert( 'I am link #' + i );
+ console.log( 'link#:' + i );
+ },'false' 
+);
+}
+ 
+</script> 

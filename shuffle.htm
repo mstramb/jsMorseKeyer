@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+</head>
+<body>
+    <h2> Decoding Morse Code With JavaScript (sound Added)    </h1>
+<p>Orginal Code by <a href="http://www.bennadel.com/blog/2267-decoding-morse-code-with-javascript.htm">Ben Nadel</a></p>
+
+<a href="https://codeload.github.com/mstramb/jsMorseKeyer/zip/master">download</a>
+<a href="https://codeload.github.com/mstramb/jsMorseKeyer/zip/master">GitHub Source</a>
+
+<script>
+ 
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+// http://stackoverflow.com/questions/21595244/need-to-generate-randoms-alphabets-on-each-time-page-load
+function generateRandomText(n) {
+    var text = '';
+    for (var i = 0; i < n; i++) {
+          // text += String.fromCharCode(65 + Math.floor(Math.random() * 26) + 32 * (Math.round(Math.random())));
+     
+  text += String.fromCharCode(65 + Math.floor(Math.random() * 26)  );
+
+    }
+    return text;
+}
+
+//The Math.floor(Math.random() * 26) bit picks a letter, 
+// and Math.round(Math.random()) gives a random 0 or 1 value, 
+// that decides the case(upper and lower respectively)
+
+var arr = ['a'2, 11, 37, 42];
+shuffle(arr);
+console.log(arr); 
+</script> 

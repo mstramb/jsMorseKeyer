@@ -1,8 +1,17 @@
- div.output {}
+ div.output {
+   position: relative;
+}
 
  div.output p.message {
             font-size: 20px ;
             line-height: 30px ;
+
+           border: 1px solid green;
+           float: left;
+           width: 200px;
+           height: 300px;
+
+
             }
 
         div.output span.possibleCharacters {
@@ -99,3 +108,14 @@
             line-height: 18px ;
             }
     
+#right {
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+	  position: relative;
+    top: -270px;
+    left: 620px;
+
+    border: 2px solid black;
+    float: left;
+    width: 400px;
+    height: 200px;
+}

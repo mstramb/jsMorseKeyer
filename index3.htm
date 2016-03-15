@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>(index.htm) Decoding Morse Code With JavaScript</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<!-- resolveTimer = setTimeout(  ......  )glb_pauseDuration -->
+<!--  The pauseDuration is affecting the responsiveness of the output message -->
+
+<!--  timerId = setInterval(progressing(now),SPACETIME ); -->
+
+<link rel="stylesheet" type="text/css" href="css/main.css">
+
+<!--    <script src="js/jquery-1.12.1.min.js"></script> -->
+        <script src="js/jquery-2.2.1.min.js"></script> 
+
+    <script src="js/main.js"></script>
+    <script src="js/morseCode.js"></script>
+<!--    <script src="js/morse2.js"></script>    see bottom of body (until Immediate function changed in morse2.js-->
+    <script src="js/mike-morse-webAudio.js"></script>    
+    <script src="js/progress.js"></script>
+
+</head>
+<body>
+
+ <h2> Decoding Morse Code With JavaScript (sound Added)    </h1>
+<p>Orginal Code by <a href="http://www.bennadel.com/blog/2267-decoding-morse-code-with-javascript.htm">Ben Nadel</a></p>
+
+<a href="https://codeload.github.com/mstramb/jsMorseKeyer/zip/master">download</a>
+<a href="https://codeload.github.com/mstramb/jsMorseKeyer/zip/master">GitHub Source</a>
+<p>
+
+
+SoundFreq:<input type="text" id="freqInput" value="1000" style="width:30px"></input>
+<!-- &nbsp  <span id="curBeepFreq">0</span> -->
+&nbsp&nbsp
+DotTime:<input type="text" id="dotTimeInput" value="250" style="width:30px"></input>
+&nbsp&nbsp
+Wpm:<input type="text" id="wpmInput" value="10" style="width:30px"></input>
+
+&nbsp<span id="curDotTime">0</span>
+&nbsp&nbsp
+DashTime:<span id="curDashTime">0</span>
+&nbsp&nbsp
+
+<!-- pauseTime -->
+charTime(pausetime):<span id="curCharTime">0</span>
+&nbsp&nbsp
+WordTime:<span id="curWordTime">0</span>
+
+<button  id="but1" 
+             style="width:50px;height:50px"
+					   onclick="toggleSpcProgBar()">
+					   Bars
+						</button>
+
+<button  id="but1" style="width:50px;height:50px" onclick="setInv1()">Test (setInv1)	</button>
+
+
+    <!-- BEGIN: Output. -->
+<div class="output">
+<b>Speed</b>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  
+
+<br>
+<!--  Char:<span class="SPDchar">chr</span> -->
+&nbsp
+  Wpm: <span class="SPDword"id="dspWpm" >wpm</span>
+  
+<!--  Space:<span class="SPDspace" id="dspSpaceTime">space</span> -->
+  <!-- progTimeout:<span id="progTimeout">000</span> -->
+  <p>
+<!--  TimeCount:<span class="sptimecount">000</span> -->
+WordTimeout:<progress id="wordTimeOutBar" value="0" max="100" style="width:300px;"></progress>
+<span id="currWordTimeout">000</span>
+&nbsp<span class="info" id="wordTimedOutVal"></span> 
+&nbsp&nbsp&nbsp<span class="warning1" id="wordTimedOutMsg"></span> 
+<!-- &nbsp&nbsp -->
+<p>
+CharTimeout:<progress id="charTimeOutBar" value="0" max="100" style="width:200px;"></progress>
+<span id="currCharTimeout">000</span>
+&nbsp<span class="info" id="charTimedOutVal"></span> 
+&nbsp&nbsp&nbsp<span class="warning2" id="charTimedOutMsg"></span> 
+
+<p>
+
+<h4>Your Message (Press any key to interact): </h4>
+<h2> <div class="msg" id="fox1">yyz The Quick Brown Fox Jumps Over The Lazy Dog</div> </h2>
+<p>
+<span class="dot"></span> &nbsp&nbsp&nbsp&nbsp   <span class="dash"></span>
+<br>       
+ <span class="message">
+	<!-- mike -->
+<p>
+    <span class="characters"> <!-- This will be populated with the decoded Morse. -->  </span>
+    <span class="possibleCharacters">  <!-- This will be populated dynamically. -->    </span>
+   </p>
+ </div>
+<div id="right">
+    &nbspTry entering multiple 'dit(s)' or "dahs", while 
+    &nbspwatching the 'CharTimeout' progress bar.
+   <p>
+    &nbspMultiple 'dits' -> (1)e,(2)i,(3)s,(4)h,(5)5
+<p>
+    &nbspMultiple 'dahs' -> (1)t,(2)m,(3)o,(4)<no char>,(5) 0(zero)
+</div>
+  
+<p>
+
+    <div class="alphabet">
+        <h3> Morse Code Alphabet </h3>
+
+        <ul class="characters">
+            <!-- This will be populated dynamically. -->
+        </ul>
+
+        <!-- Define the template. --->
+        <script type="application/x-template" class="template">
+            <li>
+                <span class="character"></span>
+                <span class="sequence"></span>
+            </li>
+        </script>
+    </div>
+    <!-- END: Alphabet. -->
+
+ <script src="js/morse2.js"></script>
+
+</body>
+</html>

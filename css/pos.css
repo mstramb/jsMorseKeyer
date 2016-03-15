@@ -1,0 +1,29 @@
+#left {
+    border: 1px solid blue;
+    float: left;
+    width: 100px;
+    height: 300px;
+}
+#topleft {
+    border: 1px solid red;
+    width: 100%;
+    height: 100px;
+}
+#bottomleft {
+    border: 1px solid red;
+    width: 100%;
+    height: 100px;
+    margin-top: 5px;
+}
+#main {
+    border: 1px solid green;
+    float: left;
+    width: 200px;
+    height: 300px;
+}
+#right {
+    border: 1px solid blue;
+    float: left;
+    width: 100px;
+    height: 100px;
+}

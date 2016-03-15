@@ -1,128 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>(index.htm) Decoding Morse Code With JavaScript</title>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-
-<!-- resolveTimer = setTimeout(  ......  )glb_pauseDuration -->
-<!--  The pauseDuration is affecting the responsiveness of the output message -->
-
-<!--  timerId = setInterval(progressing(now),SPACETIME ); -->
-
-<link rel="stylesheet" type="text/css" href="css/main.css">
-
-<!--    <script src="js/jquery-1.12.1.min.js"></script> -->
-        <script src="js/jquery-2.2.1.min.js"></script> 
-
-    <script src="js/main.js"></script>
-    <script src="js/morseCode.js"></script>
-    <script src="js/mike-morse-webAudio.js"></script>    
-    <script src="js/progress.js"></script>
-
-</head>
-<body>
-
- <h2> Decoding Morse Code With JavaScript (sound Added)    </h1>
-<p>Orginal Code by <a href="http://www.bennadel.com/blog/2267-decoding-morse-code-with-javascript.htm">Ben Nadel</a></p>
-
-<a href="https://codeload.github.com/mstramb/jsMorseKeyer/zip/master">download</a>
-<a href="https://codeload.github.com/mstramb/jsMorseKeyer/zip/master">GitHub Source</a>
-<p>
-
-
-SoundFreq:<input type="text" id="freqInput" value="1000" style="width:30px"></input>
-<!-- &nbsp  <span id="curBeepFreq">0</span> -->
-&nbsp&nbsp
-DotTime:<input type="text" id="dotTimeInput" value="250" style="width:30px"></input>
-&nbsp&nbsp
-Wpm:<input type="text" id="wpmInput" value="10" style="width:30px"></input>
-
-&nbsp<span id="curDotTime">0</span>
-&nbsp&nbsp
-DashTime:<span id="curDashTime">0</span>
-&nbsp&nbsp
-
-<!-- pauseTime -->
-charTime(pausetime):<span id="curCharTime">0</span>
-&nbsp&nbsp
-WordTime:<span id="curWordTime">0</span>
-
-<button  id="but1"
-             style="width:50px;height:50px"
-					   onclick="toggleSpcProgBar()">
-					   Bars
-						</button>
-
-
-    <!-- BEGIN: Output. -->
-<div class="output">
-<b>Speed</b>
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  
-
-<br>
-<!--  Char:<span class="SPDchar">chr</span> -->
-&nbsp
-  Wpm: <span class="SPDword"id="dspWpm" >wpm</span>
-  
-<!--  Space:<span class="SPDspace" id="dspSpaceTime">space</span> -->
-  <!-- progTimeout:<span id="progTimeout">000</span> -->
-  <p>
-<!--  TimeCount:<span class="sptimecount">000</span> -->
-WordTimeout:<progress id="wordTimeOutBar" value="0" max="100" style="width:300px;"></progress>
-<span id="currWordTimeout">000</span>
-&nbsp<span class="info" id="wordTimedOutVal"></span> 
-&nbsp&nbsp&nbsp<span class="warning1" id="wordTimedOutMsg"></span> 
-<!-- &nbsp&nbsp -->
-<p>
-CharTimeout:<progress id="charTimeOutBar" value="0" max="100" style="width:200px;"></progress>
-<span id="currCharTimeout">000</span>
-&nbsp<span class="info" id="charTimedOutVal"></span> 
-&nbsp&nbsp&nbsp<span class="warning2" id="charTimedOutMsg"></span> 
-
-<p>
-
-
-
-<h4>Your Message (Press any key to interact): </h4>
-<h2> <div class="msg" id="fox1">yyz The Quick Brown Fox Jumps Over The Lazy Dog</div> </h2>
-<p>
-<span class="dot"></span> &nbsp&nbsp&nbsp&nbsp   <span class="dash"></span>
-<br>       
- <span class="message">
-	<!-- mike -->
-<p>
-    <span class="characters"> <!-- This will be populated with the decoded Morse. -->  </span>
-    
-  <span class="possibleCharacters">  <!-- This will be populated dynamically. -->    </span>
-   </p>
- </div>
-<div id="right">
-    Try inputting multiple 'dit(s)' or "dahs", while watching the 'CharTimeout' progress bar.
-   
-    Multiple 'dits' -> "e","i","s","h","5"
-</div>
-  
-<p>
-
-    <div class="alphabet">
-        <h3> Morse Code Alphabet </h3>
-
-        <ul class="characters">
-            <!-- This will be populated dynamically. -->
-        </ul>
-
-        <!-- Define the template. --->
-        <script type="application/x-template" class="template">
-            <li>
-                <span class="character"></span>
-                <span class="sequence"></span>
-            </li>
-        </script>
-    </div>
-    <!-- END: Alphabet. -->
-
-<script>
-
+console.log("morse2.js");
      // mike
 
  var itw = 0 ; // intervalTimerWordProgressBar
@@ -135,7 +11,6 @@ CharTimeout:<progress id="charTimeOutBar" value="0" max="100" style="width:200px
            console.log("m4a2.html)(toggleProgBar) spcProgBarEnabled:"+spcProgBarEnabled )
         }
 */        
-
 
         // Initialize the alphabet display.
         (function( $, container, morseCode ){
@@ -226,7 +101,7 @@ CharTimeout:<progress id="charTimeOutBar" value="0" max="100" style="width:200px
             //console.log()
           
             // Store the date/time for the keydown.
-            var keyDownDate = null;
+            //var keyDownDate = null; // moved to main.js for global access
             // Keep a timer for post-key resolution for characters.
             var resolveTimer = null;
 
@@ -244,6 +119,7 @@ CharTimeout:<progress id="charTimeOutBar" value="0" max="100" style="width:200px
 
             $( document ).keydown(
                 function( event ){
+                   console.log("(morse2)(keydown) keyDownDate:"+keyDownDate + " keyDownLast:"+keyDownLast);
  
                      // mike
                  
@@ -261,6 +137,9 @@ CharTimeout:<progress id="charTimeOutBar" value="0" max="100" style="width:200px
                     // event to be registered.
                     if (keyDownDate){
                         // Don't process this event.
+                        console.log('zzzzzzzzzzzzzzzzz op pppppppppppppppppppppppp');
+                        keyDownLast = keyDownDate ;   // mike
+                        console.log("(morse2)(keydown) keyDownLast:"+keyDownLast);
                         return;
                     }
 
@@ -274,7 +153,12 @@ CharTimeout:<progress id="charTimeOutBar" value="0" max="100" style="width:200px
                     clearTimeout( spaceTimer );
 
                     // Store the date for this key-down.
+                    
+                    //console.log("keyDownLast:"+keyDownLast);
+
                     keyDownDate = new Date();
+                    //console.log("(morse2.js) keyDownDate"+keyDownDate);
+                   // mike1();   // test to see if 'keyDownDate' has a value
                 }
             );
 
@@ -289,19 +173,18 @@ CharTimeout:<progress id="charTimeOutBar" value="0" max="100" style="width:200px
                         
                       $('#wordTimedOutMsg').html(' ');
                       $('#charTimedOutMsg').html(' ');
-                      itw =  setInterval(wordProgressBarFun(now),SPACE_TIME );
-
+                     //mike1("(morse2.js)keyup");   // test to see if 'keyDownDate' has a value 
+                     itw =  setInterval(wordProgressBarFun(now),SPACE_TIME );
                       itc = setInterval(charProgressBarFun(now),glb_dotDuration);
+                   
                   }   
 
 
                 //console.log("(morse) keyup  event.keyCode : " + event.keyCode)
-
-
-				  // mikev = event // expose event globally
+  			  // mikev = event // expose event globally
 
                     // Prevent any default action.
-                    event.preventDefault();
+                    // mike event.preventDefault();
 
 								    // Determine the keypress duration.
                     var keyPressDuration = ((new Date())- keyDownDate);
@@ -416,8 +299,4 @@ CharTimeout:<progress id="charTimeOutBar" value="0" max="100" style="width:200px
             );
         })( jQuery, $( "div.output" ), morseCode );
 
-    </script>
 
-
-</body>
-</html>

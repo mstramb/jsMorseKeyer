@@ -20,7 +20,7 @@ var domm = '' ;
             this._dotDuration = dotTime;  // 
             // this.spaceTime = this._dotDuration * 7;
             SPACE_TIME = this._dotDuration * 7;
-            console.log("(morseCode.js)(morseCode)(upDateDurations) dotTime: " + dotTime + " SPACE_TIME:"+ SPACE_TIME);
+           // console.log("(morseCode.js)(morseCode)(upDateDurations) dotTime: " + dotTime + " SPACE_TIME:"+ SPACE_TIME);
             // Define the duration of the dot in milliseconds.
             
 				    // Define the duration of the dash in milliseconds. The
@@ -86,10 +86,20 @@ var domm = '' ;
                 "---..": "8",
                 "----.": "9",
                 "...-.-": "#SK",
-                "..--..": "?"
-
+                "..--..":  "?",
+				".-.-.":    "#AR",	  //AR ----- End of message
+				".-...":    "#AS",   //AS ----- Stand by
+				"-...-.-":  "#BK",  //BK ----- Invite receiving station to transmit
+                "-...-":    "#BT",  //BT ----- Pause; Break For Text
+                "-.-.-":    "#KA",  //KA ----- Beginning of message
+                "-.--.":    "#KN",  //KN ----- end of transmission
+                "-.-..-..": "#CL",  //CL ----- Going off the air (clear)
+				"-.-.--.-": "#CQ",  //CQ ----- Calling any amateur radio station
+				"-.--.":   "#KN",	//KN ----- Go only, invite a specific station to transmit
+				"...-.-":  "#SK",  //SK ----- End of contact (sent before call)
+				"...-.":    "#VE"   //VE ----- Understood (VE)
             };
-            //  am the current, transient sequence being evaluated.
+            //  the current, transient sequence being evaluated.
             this._sequence = "";
 
 				    // ---------------------------------------------- //
