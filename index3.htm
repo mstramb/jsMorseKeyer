@@ -14,8 +14,10 @@
 <!--    <script src="js/jquery-1.12.1.min.js"></script> -->
         <script src="js/jquery-2.2.1.min.js"></script> 
 
+
     <script src="js/main.js"></script>
     <script src="js/morseCode.js"></script>
+
 <!--    <script src="js/morse2.js"></script>    see bottom of body (until Immediate function changed in morse2.js-->
     <script src="js/mike-morse-webAudio.js"></script>    
     <script src="js/progress.js"></script>
@@ -53,8 +55,10 @@ WordTime:<span id="curWordTime">0</span>
 					   onclick="toggleSpcProgBar()">
 					   Bars
 						</button>
+<p>
+Note:<input type="text" id="noteInput" value="C3" style="width:30px"></input>
 
-<button  id="but1" style="width:50px;height:50px" onclick="setInv1()">Test (setInv1)	</button>
+<!-- <button  id="but1" style="width:50px;height:50px" onclick="setInv1()">Test (setInv1)	</button> -->
 
 
     <!-- BEGIN: Output. -->
@@ -87,12 +91,17 @@ CharTimeout:<progress id="charTimeOutBar" value="0" max="100" style="width:200px
 <h4>Your Message (Press any key to interact): </h4>
 <h2> <div class="msg" id="fox1">yyz The Quick Brown Fox Jumps Over The Lazy Dog</div> </h2>
 <p>
+dom.characters.text.length:&nbsp <span id="debug1">debug1 </span>
+<p>
 <span class="dot"></span> &nbsp&nbsp&nbsp&nbsp   <span class="dash"></span>
 <br>       
  <span class="message">
 	<!-- mike -->
 <p>
-    <span class="characters"> <!-- This will be populated with the decoded Morse. -->  </span>
+    <span class="characters"> <!-- This will be populated with the decoded Morse. -->  
+<!-- (your message will be here)  check for some kind of 'inital' flag to clear this out -->
+</span>
+
     <span class="possibleCharacters">  <!-- This will be populated dynamically. -->    </span>
    </p>
  </div>

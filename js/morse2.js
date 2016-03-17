@@ -1,4 +1,4 @@
-console.log("morse2.js");
+console.log("morse2.js (characters length check) ");
      // mike
 
  var itw = 0 ; // intervalTimerWordProgressBar
@@ -119,7 +119,7 @@ console.log("morse2.js");
 
             $( document ).keydown(
                 function( event ){
-                   console.log("(morse2)(keydown) keyDownDate:"+keyDownDate + " keyDownLast:"+keyDownLast);
+                   //console.log("(morse2)(keydown) keyDownDate:"+keyDownDate + " keyDownLast:"+keyDownLast);
  
                      // mike
                  
@@ -137,9 +137,9 @@ console.log("morse2.js");
                     // event to be registered.
                     if (keyDownDate){
                         // Don't process this event.
-                        console.log('zzzzzzzzzzzzzzzzz op pppppppppppppppppppppppp');
+                        //console.log('zzzzzzzzzzzzzzzzz op pppppppppppppppppppppppp');
                         keyDownLast = keyDownDate ;   // mike
-                        console.log("(morse2)(keydown) keyDownLast:"+keyDownLast);
+                       // console.log("(morse2)(keydown) keyDownLast:"+keyDownLast);
                         return;
                     }
 
@@ -180,7 +180,7 @@ console.log("morse2.js");
                   }   
 
 
-                //console.log("(morse) keyup  event.keyCode : " + event.keyCode)
+                console.log("(morse) keyup  event.keyCode : " + event.keyCode + "(inputNoteLen) nll:"+nll);
   			  // mikev = event // expose event globally
 
                     // Prevent any default action.
@@ -230,9 +230,9 @@ console.log("morse2.js");
                     // sequence.
 
                      // mike
-                     //dom.possibleCharacters.text(
-                     //   morseCode.resolvePartial().join( " , " )
-                    // );
+                     dom.possibleCharacters.text(
+                        morseCode.resolvePartial().join( " , " )
+                     );
 
                     // Now that the key has been pressed, we need to
                     // wait a bit to see if we need to resolve the
@@ -248,9 +248,19 @@ console.log("morse2.js");
                                 var character = morseCode.resolveSequence();
 
                                 // Add it to the output.
-                                dom.characters.text(
-                                    dom.characters.text() + character
-                                );
+                                //console.log("dom.characters.text().length :"+dom.characters.text().length );
+                                
+                                $('#debug1').html(dom.characters.text().length);
+
+                                if(dom.characters.text().length < MSGLEN)
+                                 dom.characters.text(dom.characters.text() + character);
+                                else {
+                                    dom.characters.text('');
+                                   // dom.characters.text(dom.characters.text() + "<p>");
+                                  //console.log(">100 adding '<p>'");
+                                  //console.log(dom.characters.text() );
+                                  }
+                                 //
 
                             }
 

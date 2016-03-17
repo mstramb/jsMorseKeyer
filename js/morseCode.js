@@ -4,23 +4,22 @@
 // mike
 var domm = '' ;
 
-        var morseCode = (function(){
-
+    var morseCode = (function(){
         //var morseCode = (function(dotDurationParm){
-           
           this.init = function() {    // mike
             this.upDateDurations(DOT_DURATION);
             this.initData();
       //      console.log("(morseCode.js)(morseCode)(this.init) DOT_DURATION: " + DOT_DURATION + " SPACE_TIME:"+ SPACE_TIME);
          //   updateHTMLFields();
-           }
+           };
 
            this.upDateDurations = function(dotTime) {    // mike
 
-            this._dotDuration = dotTime;  // 
-            // this.spaceTime = this._dotDuration * 7;
-            SPACE_TIME = this._dotDuration * 7;
-           // console.log("(morseCode.js)(morseCode)(upDateDurations) dotTime: " + dotTime + " SPACE_TIME:"+ SPACE_TIME);
+             this._dotDuration = dotTime;  // 
+
+             // this.spaceTime = this._dotDuration * 7;
+             SPACE_TIME = this._dotDuration * 7;
+            // console.log("(morseCode.js)(morseCode)(upDateDurations) dotTime: " + dotTime + " SPACE_TIME:"+ SPACE_TIME);
             // Define the duration of the dot in milliseconds.
             
 				    // Define the duration of the dash in milliseconds. The
@@ -30,16 +29,16 @@ var domm = '' ;
 				    // Define the pause duration. This is the time between
             // letters and is supposed to be 1x that of the dot.
             // ** mike ... supposed to be 3
-          //  this._pauseDuration = (this._dotDuration * 1);
-          this._pauseDuration = (this._dotDuration * 3);
+            //  this._pauseDuration = (this._dotDuration * 1);
+            this._pauseDuration = (this._dotDuration * 3);
 
-         glb_dotDuration   =  this._dotDuration;
-         glb_dashDuration  = this._dashDuration;
-         glb_pauseDuration = this._pauseDuration;
-         glb_WPM = WPMFACT / glb_dotDuration ;
+            glb_dotDuration   =  this._dotDuration;
+            glb_dashDuration  = this._dashDuration;
+            glb_pauseDuration = this._pauseDuration;
+            glb_WPM = WPMFACT / glb_dotDuration ;
 
-         updateHTMLFields();
-        }
+            updateHTMLFields();
+        };
           
 
 
@@ -97,25 +96,22 @@ var domm = '' ;
 				"-.-.--.-": "#CQ",  //CQ ----- Calling any amateur radio station
 				"-.--.":   "#KN",	//KN ----- Go only, invite a specific station to transmit
 				"...-.-":  "#SK",  //SK ----- End of contact (sent before call)
-				"...-.":    "#VE"   //VE ----- Understood (VE)
+				"...-.":    "#VE",   //VE ----- Understood (VE)
+                "........": "#HH",    // error      
+                "----": "F+",   // mike 
+                "..--": "F-"    // mike
             };
             //  the current, transient sequence being evaluated.
             this._sequence = "";
-
-				    // ---------------------------------------------- //
-            // ---------------------------------------------- //
             //  add the given value to the current sequence.
-            //
             // Throws InvalidTone if not a dot or dash.
-          } // initData
-   //console.log("(morseCode.js)(morseCode 'body') this._dotDuration :" + this._dotDuration);
+          }; // initData
+   
+             //console.log("(morseCode.js)(morseCode 'body') this._dotDuration :" + this._dotDuration);
 
           this.addSequence = function( value ){
                 // Check to make sure the value is valid.
-                if (
-                    (value !== ".") &&
-                    (value !== "-")
-                    ){
+                if ((value !== ".") && (value !== "-") ){
                     // Invalid value.
                     throw( new Error( "InvalidTone" ) );
                 }
@@ -188,14 +184,13 @@ var domm = '' ;
                     // the start of the given pattern.
                     if (pattern.indexOf( this._sequence ) === 0){
                         // Add this character to the list.
-                        potentialCharacters.push(
-                            this._patternMap[ pattern ]
-                        );
+                        potentialCharacters.push(this._patternMap[ pattern ]);
                     }
                 }
                 // Return the potential character matches.
                 return( potentialCharacters.sort() );
             };
+
             //  get the alpha-numeric charater repsented by the
             // current sequence.  also also reset the internal
             // sequence value.
@@ -210,6 +205,23 @@ var domm = '' ;
                 }
                 // Get the alpha-numeric mapping.
                 var character = this._patternMap[ this._sequence ];
+                // mike
+                console.log("character:"+character);
+
+                if(character=="F+") {
+                // console.log("(old) BeepFreq:" + BeepFreq);
+                  BeepFreq +=100;
+                 // console.log("(new)BeepFreq:" + BeepFreq);
+                 updateHTMLFields();
+                 }
+
+                if(character=="F-") {
+                 //console.log("(old) BeepFreq:" + BeepFreq);
+                  BeepFreq -=100;
+                 // console.log("(new)BeepFreq:" + BeepFreq);
+                  updateHTMLFields();
+                }
+
                 // Reset the sequence.
                 this._sequence = "";
                 // Return the mapped character.
