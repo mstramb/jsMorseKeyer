@@ -252,8 +252,11 @@ console.log("morse2.js (characters length check) ");
                                 
                                 $('#debug1').html(dom.characters.text().length);
 
-                                if(dom.characters.text().length < MSGLEN)
+                                if(dom.characters.text().length < MSGLEN) {
                                  dom.characters.text(dom.characters.text() + character);
+                                   if(recording) {
+                                    }
+                                 }
                                 else {
                                     dom.characters.text('');
                                    // dom.characters.text(dom.characters.text() + "<p>");

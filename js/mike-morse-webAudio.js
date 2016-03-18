@@ -5,11 +5,22 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext;
   
   var context = new AudioContext();
 
+ var masterGain = 0;
+
+ function setGain(gain){
+   console.log("(setGain) gain"+gain );
+   masterGain.gain.value = gain;   // 0.5
+  }
+
             masterGain = context.createGain();
             nodes = [];
 
 //            masterGain.gain.value = 0.3;
-            masterGain.gain.value = 0.3;   // 0.5
+       //     masterGain.gain.value = 0.3;   // 0.5
+  //   masterGain.gain.value = MASTERGAIN;   // 0.5
+
+       setGain(MASTERGAIN);
+
             masterGain.connect(context.destination);
 
      //     playnoteUp(event.keyCode)

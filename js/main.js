@@ -18,22 +18,7 @@ console.log('- main.js - v1.03');
 
         var MSGLEN = 100;   // to truncate / erase the message
 
-        var noteval = [130.81,138.59,146.83,155.56,164.81,174.61,185.00,196.0,207.65,220.0,233.08,246.94,261.63] ;
-        var noteNam = ['C3',  'C3#', 'D3',  'D3#', 'E3',  'F3', 'F3#', 'G3','G3#','A3','A3#','B3','C4'];
-
-        var noteTab = {'c3':130.81,
-					   'c3#':138.59,
-                       'd3':146.83,
-                       'd3#':155.56,
-				       'e3':164.81,
-                       'f3':174.61,
-                       'f3#':185.00,
-                       'g3':196.0,
-                       'g3#':207.65,
-                       'a3':220.0,
-                       'a3#':233.08,
-                       'b3':246.94,
-                       'c4':261.63} ;
+        var MASTERGAIN = 0.2        
 
    //var
 // dotDuration = morseCode.getDotDuration();
@@ -75,7 +60,6 @@ $('#freqInput').val(BeepFreq);
 
 $(document).ready(function() {
 //   console.log('(jquery ready');
-
   $('#foo').bind('click', function(event) {   // '#' is id
     alert('The mouse cursor is at ('
       + event.pageX + ', ' + event.pageY + ')');
@@ -86,6 +70,8 @@ $(document).ready(function() {
 
   $('#noteInput').bind('input',inputNoteHandler);
 
+$('#volumeInput').bind('input',inputVolumeHandler);
+
 
   $('#curDotTime').html(DOT_DURATION);
   $('#curDashTime').html(DASH_DURATION);
@@ -95,10 +81,15 @@ $(document).ready(function() {
 
 }); 
 
+function inputVolumeHandler () {
+ console.log('(inputVolumeHandler)')
+  var newGain = document.getElementById('volumeInput').value;
+  setGain(newGain);
+}
 
 function inputNoteHandler () {
  // data = $('#noteInput').val(); 
- var noteInput = $('#noteInput').val(); 
+ var noteInput = $('#noteInput').val().toUpperCase(); 
    // data = document.getElementById('freqInput').value;
 
 nll = noteInput.length;
