@@ -197,7 +197,8 @@ var domm = '' ;
             //
             // Throws InvalidSequence if it cannot be mapped to a
             // valid alpha-numeric character.
-            this.resolveSequence = function(){
+            
+             this.resolveSequence = function(){
                 // Check to see if the current sequence is valid.
                 if (!this._patternMap.hasOwnProperty( this._sequence )){
                     // The sequence cannot be matched.
@@ -210,14 +211,14 @@ var domm = '' ;
 
                 if(character=="F+") {
                 // console.log("(old) BeepFreq:" + BeepFreq);
-                  BeepFreq +=100;
+                //  BeepFreq +=100;
                  // console.log("(new)BeepFreq:" + BeepFreq);
                  updateHTMLFields();
                  }
 
                 if(character=="F-") {
                  //console.log("(old) BeepFreq:" + BeepFreq);
-                  BeepFreq -=100;
+                 // BeepFreq -=100;
                  // console.log("(new)BeepFreq:" + BeepFreq);
                   updateHTMLFields();
                 }

@@ -13,7 +13,7 @@ console.log('- main.js - v1.03');
         var spcProgBarEnabled = true;  //zop
         
         var SPACE_TIME = 0;
-        var DOT_DURATION = 180;  // 250
+        var DOT_DURATION = 150;  // 250
         var DASH_DURATION = 0;   // calculated from dot_duration
 
         var MSGLEN = 100;   // to truncate / erase the message
@@ -44,14 +44,21 @@ function updateHTMLFields(){
   //console.log('updateHTMLFields glb_WPM:' + glb_WPM);
   $('#dspWpm').html(glb_WPM);
 
-  
+ 
 // $('#curCharTime').val(glb_dotDuration);
 $('#curCharTime').text(glb_dotDuration);
 
 $('#freqInput').val(BeepFreq);
 //$('#dotTimeInput').val(DOT_DURATION);
 
+$('#curDotTime').val(glb_dotDuration);
 
+var gsval = $('#gainSlider').val();
+console.log('updateHTMLFields gsval:' + gsval);
+
+$('#curGainSlider').text(gsval);
+  
+console.log('updateHTMLFields gsval:' + gsval + "curGainSlider.val()" + $('#curGainSlider').val() );
 }
   function toggleSpcProgBar() {
            console.log('(main.js)(toggleSpcProgBar)');
@@ -65,12 +72,16 @@ $(document).ready(function() {
       + event.pageX + ', ' + event.pageY + ')');
   });
 
+  $('#dotTimeInput').val(DOT_DURATION);
+
   $('#freqInput').bind('input',inputFreqHandler);
   $('#dotTimeInput').bind('input',inputDotTimeHandler);
 
   $('#noteInput').bind('input',inputNoteHandler);
 
-$('#volumeInput').bind('input',inputVolumeHandler);
+  $('#volumeInput').bind('input',inputVolumeHandler);
+  
+  $('#gainSlider').bind('input',inputVolumeSliderHandler);
 
 
   $('#curDotTime').html(DOT_DURATION);
@@ -81,6 +92,12 @@ $('#volumeInput').bind('input',inputVolumeHandler);
 
 }); 
 
+function inputVolumeSliderHandler(){
+  var newGain = document.getElementById('gainSlider').value;
+ console.log('(inputVolumeSliderHandler) newGain:' + newGain);
+  setGain(newGain);
+  updateHTMLFields();
+}
 function inputVolumeHandler () {
  console.log('(inputVolumeHandler)')
   var newGain = document.getElementById('volumeInput').value;
