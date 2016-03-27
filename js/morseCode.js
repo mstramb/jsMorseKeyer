@@ -97,9 +97,9 @@ var domm = '' ;
 				"-.--.":   "#KN",	//KN ----- Go only, invite a specific station to transmit
 				"...-.-":  "#SK",  //SK ----- End of contact (sent before call)
 				"...-.":    "#VE",   //VE ----- Understood (VE)
-                "........": "#HH",    // error      
-                "----": "F+",   // mike 
-                "..--": "F-"    // mike
+                "........": "#HH"    // error      
+                //"----": "F+",   // mike 
+                //"..--": "F-"    // mike
             };
             //  the current, transient sequence being evaluated.
             this._sequence = "";
@@ -200,24 +200,36 @@ var domm = '' ;
             // Throws InvalidSequence if it cannot be mapped to a
             // valid alpha-numeric character.
 
-            // zop            
+            // zop          
+
+             this.InvalidSequence = function(seq){
+              console.log("(morseCode.js)(InvalidSequence) seq:"+seq);
+              return("!");
+              }
+
              this.resolveSequence = function(){
                 // Check to see if the current sequence is valid.
                 if (!this._patternMap.hasOwnProperty( this._sequence )){
                     // The sequence cannot be matched.
-                    throw( new Error( "InvalidSequence" ) );
+                //    throw( new Error( "InvalidSequence" ) );
+                 //throw( new this.InvalidSequence(this._sequence)); // mike
+                //throw(this.InvalidSequence(this._sequence)); // mike
+                this._sequence = "";
+                return('!'); // mike
                 }
+                console.log("(morseCode.js)(this.resolveSequence) (after throw(this.InvalidSequence");
                 // Get the alpha-numeric mapping.
                 console.log("(morseCode.js) this._sequence:"+ this._sequence);
                 var character = this._patternMap[ this._sequence ];
                 // mike
-                console.log("character:"+character);
+                console.log("(morseCode.js)(this.resolveSequence) character:"+character);
 
-                if(character=="F+") {
+                /*
+                 if(character=="F+") {
                 // console.log("(old) BeepFreq:" + BeepFreq);
-                //  BeepFreq +=100;
+                  BeepFreq +=100;
                  // console.log("(new)BeepFreq:" + BeepFreq);
-                 updateHTMLFields();
+                // updateHTMLFields();
                  }
 
                 if(character=="F-") {
@@ -226,6 +238,7 @@ var domm = '' ;
                  // console.log("(new)BeepFreq:" + BeepFreq);
                   updateHTMLFields();
                 }
+                */
 
                 // Reset the sequence.
                 //this.lastSequence = this._sequence;

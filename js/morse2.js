@@ -1,10 +1,9 @@
-console.log("morse2.js (characters length check) ");
+// console.log("morse2.js (characters length check) ");
      // mike
 
  var itw = 0 ; // intervalTimerWordProgressBar
  var itc = 0 ; // intervalTimerCharProgressBar 
  
-
 /*
         function toggleProgBar () {
            spcProgBarEnabled = !spcProgBarEnabled;
@@ -80,12 +79,12 @@ console.log("morse2.js (characters length check) ");
 				progress1:          container.find( "progress.progress1" ),
 				sptimecount:        container.find( "span.sptimecount" ),
                 progTimeout:        container.find( "span.progTimeout" ),
-                morsePatterns:      container.find( "span.morsePatterns" )   
+                morsePatterns:      container.find( "span.morsePatterns" ),
+                totMsgTime:         container.find("span.morseMsgTime")
             };
             domm = dom; // mike debug
 
             //domm.progress1.val(100)
-
            
 
             dom.SPDchar.text(vSPDchar);  
@@ -256,6 +255,9 @@ console.log("morse2.js (characters length check) ");
                                 if(dom.characters.text().length < MSGLEN) {
                                  dom.characters.text(dom.characters.text() + character);
                                  dom.morsePatterns.text(dom.morsePatterns.text()  + morseCode.lastSequence + " | ");
+                                 glb_totMsgTime += morseElemTime[character];
+                                 dom.totMsgTime.text(glb_totMsgTime);
+
                                    if(recording) {
                                     }
                                  }

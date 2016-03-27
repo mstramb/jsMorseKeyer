@@ -8,7 +8,7 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext;
  var masterGain = 0;
 
  function setGain(gain){
-   console.log("(setGain) gain"+gain );
+//   console.log("(setGain) gain"+gain );
    masterGain.gain.value = gain;   // 0.5
   }
 

@@ -7,7 +7,7 @@ console.log('- main.js - v1.0 3');
 
         var BeepFreq = 1100.0;   // c
 
-        var DOT_DURATION = 150;  // 250   1200 / DOT_DURATION = WPM   120=10wpm .. 60=20wpm etc
+        var DOT_DURATION = 360;  // 250   1200 / DOT_DURATION = WPM   120=10wpm .. 60=20wpm etc
          // 100 - 12 wpm
 
 
@@ -26,10 +26,12 @@ console.log('- main.js - v1.0 3');
         
 
         var DASH_DURATION = 0;   // calculated from dot_duration
-
-        var MSGLEN = 100;   // to truncate / erase the message
-
+        //var MSGLEN = 100;   // to truncate / erase the message
+        var MSGLEN = 1000;   // to truncate / erase the message
         var MASTERGAIN = 0.7        
+ 
+       var glb_totMsgTime = 0;
+         
 
    //var
 // dotDuration = morseCode.getDotDuration();
@@ -55,6 +57,8 @@ function updateHTMLFields(){
   //console.log('updateHTMLFields glb_WPM:' + glb_WPM);
   $('#dspWpm').html(glb_WPM);
 
+$('#morseMsgTime').text(glb_totMsgTime);
+
  
 // $('#curCharTime').val(glb_dotDuration);
 $('#curCharTime').text(glb_dotDuration);
@@ -65,14 +69,14 @@ $('#freqInput').val(BeepFreq);
 $('#curDotTime').val(glb_dotDuration);
 
  var gsval = $('#gainSlider').val();
- console.log('updateHTMLFields gsval:' + gsval);
+// console.log('updateHTMLFields gsval:' + gsval);
 
 $('#curGainSlider').text(gsval);
  
 $('#freqInput').text(BeepFreq);
 
  
-console.log('updateHTMLFields gsval:' + gsval + "curGainSlider.val()" + $('#curGainSlider').val() );
+// console.log('updateHTMLFields gsval:' + gsval + "curGainSlider.val()" + $('#curGainSlider').val() );
 }
   function toggleSpcProgBar() {
            console.log('(main.js)(toggleSpcProgBar)');
@@ -85,6 +89,8 @@ $(document).ready(function() {
     alert('The mouse cursor is at ('
       + event.pageX + ', ' + event.pageY + ')');
   });
+
+  timingInit();
 
   $('#dotTimeInput').val(DOT_DURATION);
 
