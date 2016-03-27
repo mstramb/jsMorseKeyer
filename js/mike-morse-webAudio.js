@@ -12,6 +12,8 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext;
    masterGain.gain.value = gain;   // 0.5
   }
 
+// setFreq(BeepFreq);
+
             masterGain = context.createGain();
             nodes = [];
 
@@ -36,7 +38,9 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
                 oscillator = context.createOscillator();
 
-                oscillator.type = 'square';
+                // oscillator.type = 'square';
+                oscillator.type = 'sine';
+
                // oscillator.frequency.value = frequency;
 
                 oscillator.frequency.value = BeepFreq;  // BeepFreq in main.js

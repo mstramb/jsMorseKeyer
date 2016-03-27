@@ -1,24 +1,35 @@
-console.log('- main.js - v1.03');
+console.log('- main.js - v1.0 3');
 
      // mike
  var nll = 0;
 
+        //var BeepFreq = 261.63;   // c
+
+        var BeepFreq = 1100.0;   // c
+
+        var DOT_DURATION = 150;  // 250   1200 / DOT_DURATION = WPM   120=10wpm .. 60=20wpm etc
+         // 100 - 12 wpm
+
+
         var mikev = '' ;
+
         var FREQDOWN = 440.0;
         var FREQUP   = 340.0;
         var FREQDOT  = 900.0;
         var FREQDASH = 300.0;
         var tcount = 0;
-        var BeepFreq = 1000;
-        var spcProgBarEnabled = true;  //zop
+        
+        var spcProgBarEnabled = false;  //zop
         
         var SPACE_TIME = 0;
-        var DOT_DURATION = 150;  // 250
+
+        
+
         var DASH_DURATION = 0;   // calculated from dot_duration
 
         var MSGLEN = 100;   // to truncate / erase the message
 
-        var MASTERGAIN = 0.2        
+        var MASTERGAIN = 0.7        
 
    //var
 // dotDuration = morseCode.getDotDuration();
@@ -53,11 +64,14 @@ $('#freqInput').val(BeepFreq);
 
 $('#curDotTime').val(glb_dotDuration);
 
-var gsval = $('#gainSlider').val();
-console.log('updateHTMLFields gsval:' + gsval);
+ var gsval = $('#gainSlider').val();
+ console.log('updateHTMLFields gsval:' + gsval);
 
 $('#curGainSlider').text(gsval);
-  
+ 
+$('#freqInput').text(BeepFreq);
+
+ 
 console.log('updateHTMLFields gsval:' + gsval + "curGainSlider.val()" + $('#curGainSlider').val() );
 }
   function toggleSpcProgBar() {
@@ -83,6 +97,10 @@ $(document).ready(function() {
   
   $('#gainSlider').bind('input',inputVolumeSliderHandler);
 
+$('#freqSlider').bind('input',inputFreqSliderHandler);
+
+$('#freqSliderHi').bind('input',inputFreqSliderHiHandler);
+
 
   $('#curDotTime').html(DOT_DURATION);
   $('#curDashTime').html(DASH_DURATION);
@@ -91,6 +109,25 @@ $(document).ready(function() {
  updateHTMLFields();
 
 }); 
+
+
+function inputFreqSliderHiHandler(){
+  var newFreq = document.getElementById('freqSliderHi').value;
+  //console.log('(inputFreqSliderHandler) newFreq:' + newFreq + " this:" + this);
+ BeepFreq = parseFloat(newFreq);
+ //setFreq(BeepFreq);
+  updateHTMLFields();
+}
+
+
+function inputFreqSliderHandler(){
+  var newFreq = document.getElementById('freqSlider').value;
+  //console.log('(inputFreqSliderHandler) newFreq:' + newFreq + " this:" + this);
+ BeepFreq = parseFloat(newFreq);
+ //setFreq(BeepFreq);
+  updateHTMLFields();
+}
+
 
 function inputVolumeSliderHandler(){
   var newGain = document.getElementById('gainSlider').value;

@@ -79,7 +79,8 @@ console.log("morse2.js (characters length check) ");
 				SPDspace:           container.find( "span.SPDspace" ),
 				progress1:          container.find( "progress.progress1" ),
 				sptimecount:        container.find( "span.sptimecount" ),
-                progTimeout:        container.find( "span.progTimeout" )
+                progTimeout:        container.find( "span.progTimeout" ),
+                morsePatterns:      container.find( "span.morsePatterns" )   
             };
             domm = dom; // mike debug
 
@@ -254,11 +255,13 @@ console.log("morse2.js (characters length check) ");
 
                                 if(dom.characters.text().length < MSGLEN) {
                                  dom.characters.text(dom.characters.text() + character);
+                                 dom.morsePatterns.text(dom.morsePatterns.text()  + morseCode.lastSequence + " | ");
                                    if(recording) {
                                     }
                                  }
                                 else {
                                     dom.characters.text('');
+                                    dom.morsePatterns.text(''); // mike
                                    // dom.characters.text(dom.characters.text() + "<p>");
                                   //console.log(">100 adding '<p>'");
                                   //console.log(dom.characters.text() );

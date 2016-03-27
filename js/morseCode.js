@@ -118,6 +118,7 @@ var domm = '' ;
                 // Add the given value to the end of the current
                 // sequence value.
                 this._sequence += value;
+                this.lastSequence = this._sequence; // mike
                 // Return this object reference.
                 return( this );
             };
@@ -171,6 +172,7 @@ var domm = '' ;
             this.resetSequence = function(){
                 // Clear the sequence.
                 this._sequence = "";
+                this.lastSequence = "";
             };
             //  get the possible character matches based on the
             // current sequence.
@@ -197,7 +199,8 @@ var domm = '' ;
             //
             // Throws InvalidSequence if it cannot be mapped to a
             // valid alpha-numeric character.
-            
+
+            // zop            
              this.resolveSequence = function(){
                 // Check to see if the current sequence is valid.
                 if (!this._patternMap.hasOwnProperty( this._sequence )){
@@ -205,6 +208,7 @@ var domm = '' ;
                     throw( new Error( "InvalidSequence" ) );
                 }
                 // Get the alpha-numeric mapping.
+                console.log("(morseCode.js) this._sequence:"+ this._sequence);
                 var character = this._patternMap[ this._sequence ];
                 // mike
                 console.log("character:"+character);
@@ -224,6 +228,7 @@ var domm = '' ;
                 }
 
                 // Reset the sequence.
+                //this.lastSequence = this._sequence;
                 this._sequence = "";
                 // Return the mapped character.
                 return( character );
