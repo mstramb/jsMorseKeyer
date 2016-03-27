@@ -4,58 +4,49 @@ console.log('- main.js - v1.0 3');
  var nll = 0;
 
         //var BeepFreq = 261.63;   // c
-
         var BeepFreq = 1100.0;   // c
-
-        var DOT_DURATION = 360;  // 250   1200 / DOT_DURATION = WPM   120=10wpm .. 60=20wpm etc
+        var DOT_DURATION = 120;  // 250   1200 / DOT_DURATION = WPM   120=10wpm .. 60=20wpm etc
          // 100 - 12 wpm
-
-
         var mikev = '' ;
-
         var FREQDOWN = 440.0;
         var FREQUP   = 340.0;
         var FREQDOT  = 900.0;
         var FREQDASH = 300.0;
         var tcount = 0;
-        
         var spcProgBarEnabled = false;  //zop
-        
         var SPACE_TIME = 0;
-
-        
-
         var DASH_DURATION = 0;   // calculated from dot_duration
         //var MSGLEN = 100;   // to truncate / erase the message
         var MSGLEN = 1000;   // to truncate / erase the message
         var MASTERGAIN = 0.7        
+        var glb_totMsgTime = 0;
  
-       var glb_totMsgTime = 0;
-         
-
    //var
-// dotDuration = morseCode.getDotDuration();
+  // dotDuration = morseCode.getDotDuration();
 
    //var dashDuration = morseCode.getDashDuration();
    //var pauseDuration = morseCode.getPauseDuration();
 
-   var glb_dotDuration =  0;
-   var glb_dashDuration = 0;
-   var glb_pauseDuration = 0;
+        var glb_dotDuration =  0;
+        var glb_dashDuration = 0;
+        var glb_pauseDuration = 0;
+        var glb_wordTimedOutVal = 0;
+        var glb_charTimedOutVal = 0;
+     //const
+        var glb_WPM = 0;
+        const WPMFACT = 1200;
 
-   var glb_wordTimedOutVal = 0;
-   var glb_charTimedOutVal = 0;
-
-   //const
-  var glb_WPM = 0;
-  const WPMFACT = 1200;
-
-  var keyDownDate = 0;  // keydown start time , global so progress functions can access
-  var keyDownLast = 0;
+        var keyDownDate = 0;  // keydown start time , global so progress functions can access
+        var keyDownLast = 0;
 
 function updateHTMLFields(){
-  //console.log('updateHTMLFields glb_WPM:' + glb_WPM);
-  $('#dspWpm').html(glb_WPM);
+ //  console.log('updateHTMLFields glb_WPM:' + glb_WPM);
+  //console.log('updateHTMLFields glb_wordTimedOutVal:' + glb_wordTimedOutVal);
+  
+ $('#dspWpm').html(glb_WPM);
+ 
+ $('#dispcurWordTime').text(glb_wordTimedOutVal);
+ 
 
 $('#morseMsgTime').text(glb_totMsgTime);
 
@@ -189,7 +180,7 @@ function inputDotTimeHandler () {
 
 $('#curDotTime').html(newDotDuration);
 
-  var t = DOT_DURATION + 300;
+  // var t = DOT_DURATION + 300;
   // console.log('DOT_DURATION :' +  DOT_DURATION + ' DOT_DURATION + 300 :' + t);
 
   morseCode.upDateDurations(newDotDuration);

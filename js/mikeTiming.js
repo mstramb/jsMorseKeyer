@@ -11,7 +11,7 @@ function timingInit() {
 
 var tlen = {'.':dot,'-':dot*3};
 
-console.log("(mikeTiming.js)(timingInit)  pats:"+pats + " glb_dotDuration:" + glb_dotDuration + " dot:"+dot);
+// console.log("(mikeTiming.js)(timingInit)  pats:"+pats + " glb_dotDuration:" + glb_dotDuration + " dot:"+dot);
 
 for(var key in pats) {
   //x = pats[']
@@ -48,5 +48,5 @@ for(var key in pats) {
 
  //} // for(var x in pats)
 }
- console.log("morseElemTime: " +morseElemTime);
+ // console.log("morseElemTime: " +morseElemTime);
 }

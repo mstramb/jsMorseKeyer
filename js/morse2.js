@@ -180,7 +180,7 @@
                   }   
 
 
-                console.log("(morse) keyup  event.keyCode : " + event.keyCode + "(inputNoteLen) nll:"+nll);
+               // console.log("(morse) keyup  event.keyCode : " + event.keyCode + "(inputNoteLen) nll:"+nll);
   			  // mikev = event // expose event globally
 
                     // Prevent any default action.
@@ -256,6 +256,7 @@
                                  dom.characters.text(dom.characters.text() + character);
                                  dom.morsePatterns.text(dom.morsePatterns.text()  + morseCode.lastSequence + " | ");
                                  glb_totMsgTime += morseElemTime[character];
+                                 glb_totMsgTime += glb_dotDuration * 3; // letter spacing
                                  dom.totMsgTime.text(glb_totMsgTime);
 
                                    if(recording) {
@@ -304,9 +305,11 @@
 								spaceTimer = setTimeout(
                                 function(){
                                     // Add a "space".
-                                    dom.characters.text(
-                                        dom.characters.text() + "__"
-                                    );
+                                    dom.characters.text(dom.characters.text() + "__");
+
+									glb_totMsgTime += glb_wordTimedOutVal ; // word spacing time
+                                    dom.totMsgTime.text(glb_totMsgTime);
+
                                 },SPACE_TIME
                               //  3500
                             );

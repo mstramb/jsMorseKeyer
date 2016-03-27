@@ -32,6 +32,7 @@ var domm = '' ;
             //  this._pauseDuration = (this._dotDuration * 1);
             this._pauseDuration = (this._dotDuration * 3);
 
+            glb_wordTimedOutVal = this._dotDuration * 7; 
             glb_dotDuration   =  this._dotDuration;
             glb_dashDuration  = this._dashDuration;
             glb_pauseDuration = this._pauseDuration;
@@ -217,12 +218,12 @@ var domm = '' ;
                 this._sequence = "";
                 return('!'); // mike
                 }
-                console.log("(morseCode.js)(this.resolveSequence) (after throw(this.InvalidSequence");
+               // console.log("(morseCode.js)(this.resolveSequence) (after throw(this.InvalidSequence");
                 // Get the alpha-numeric mapping.
-                console.log("(morseCode.js) this._sequence:"+ this._sequence);
+                // console.log("(morseCode.js) this._sequence:"+ this._sequence);
                 var character = this._patternMap[ this._sequence ];
                 // mike
-                console.log("(morseCode.js)(this.resolveSequence) character:"+character);
+                //console.log("(morseCode.js)(this.resolveSequence) character:"+character);
 
                 /*
                  if(character=="F+") {

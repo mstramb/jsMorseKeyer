@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>(index9.htm) Decoding Morse Code With JavaScript</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<!-- resolveTimer = setTimeout(  ......  )glb_pauseDuration -->
+<!--  The pauseDuration is affecting the responsiveness of the output message -->
+
+<!--  timerId = setInterval(progressing(now),SPACETIME ); -->
+
+<link rel="stylesheet" type="text/css" href="css/main.css">
+
+<!--    <script src="js/jquery-1.12.1.min.js"></script> -->
+        <script src="js/jquery-2.2.1.min.js"></script> 
+
+
+    <script src="js/main.js"></script>
+    <script src="js/morseCode.js"></script>
+    <script src="js/playrec.js"></script>
+
+
+<!--    <script src="js/morse2.js"></script>    see bottom of body (until Immediate function changed in morse2.js-->
+    <script src="js/mike-morse-webAudio.js"></script>    
+    <script src="js/progress.js"></script>
+    <script src="js/mikeTiming.js"></script>
+
+
+</head>
+<body>
+<div class="output"> 
+<!-- mike ------------------ -->
+<!-- <div id="right">
+    &nbspTry entering multiple 'dit(s)' or "dahs", while 
+    &nbspwatching the 'CharTimeout' progress bar.
+   <p>
+    &nbspMultiple 'dits' -> (1)e,(2)i,(3)s,(4)h,(5)5
+<p>
+    &nbspMultiple 'dahs' -> (1)t,(2)m,(3)o,(4)<no char>,(5) 0(zero)
+</div>
+-->
+
+<!-- <div id="mikeOutput"> -->
+<!-- <h4>Your Message (Press any key to interact): </h4> -->
+<p>
+<!-- dom.characters.text.length:&nbsp <span id="debug1">debug1 </span> -->
+<p>
+
+<p><p><p><p><p>
+ <span class="message">
+	<!-- mike -->
+
+ <span class="characters">: <!-- This will be populated with the decoded Morse. -->  
+<!-- (your message will be here)  check for some kind of 'inital' flag to clear this out -->
+</span>
+<p>
+Code:<span class="morsePatterns"></span> <!-- mike -->
+<p>MsgTime(msecs):<span class="morseMsgTime">000</span> <!-- mike -->
+<p>
+SliderGain:<span id="curGainSlider">0</span><br>
+<input id="gainSlider" type="range" min="0" max="1.0" step="0.1" value="0.7"/>
+Volume:<input type="text" id="volumeInput" value="0.3" style="width:30px"></input> 
+
+&nbsp Notes<input id="freqSlider" type="range" min="65" max="1050" step="4" value="261.63"/>
+
+&nbsp HiFreq<input id="freqSliderHi" type="range" min="1000" max="15000" step="1000" value="2000"/>
+&nbsp&nbsp SoundFreq:<input type="text" id="freqInput" value="1000" style="width:40px"></input>
+<!-- &nbsp  <span id="curBeepFreq">0</span> -->
+&nbsp&nbsp
+
+DotTime:<input type="text" id="dotTimeInput" value="250" style="width:30px"></input>
+&nbsp&nbsp
+&nbsp  Wpm: <span class="SPDword"id="dspWpm" >wpm</span>
+Wpm:<input type="text" id="wpmInput" value="10" style="width:30px"></input>
+
+&nbsp<span id="curDotTime">0</span>
+&nbsp&nbsp
+DashTime:<span id="curDashTime">0</span>
+&nbsp&nbsp
+
+<!-- pauseTime -->
+charTime(pausetime):<span id="curCharTime">0</span>
+&nbsp&nbsp
+WordTime:<span id="dispcurWordTime">0</span>
+
+<button  id="but1" 
+             style="width:50px;height:50px"
+					   onclick="toggleSpcProgBar()">
+					   Bars
+						</button>
+<p>
+
+<span class="dot"></span> &nbsp&nbsp&nbsp&nbsp   <span class="dash"></span>
+<br>       
+<b>Speed</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  <br>
+<!--  Char:<span class="SPDchar">chr</span> -->
+
+<!--  Space:<span class="SPDspace" id="dspSpaceTime">space</span> -->
+  <!-- progTimeout:<span id="progTimeout">000</span> -->
+  <p>
+<!--  TimeCount:<span class="sptimecount">000</span> -->
+WordTimeout:<progress id="wordTimeOutBar" value="0" max="100" style="width:300px;"></progress>
+<span id="currWordTimeout">000</span>
+&nbsp<span class="info" id="wordTimedOutVal"></span> 
+&nbsp&nbsp&nbsp<span class="warning1" id="wordTimedOutMsg"></span> 
+<!-- &nbsp&nbsp -->
+</p>
+<p>
+CharTimeout:<progress id="charTimeOutBar" value="0" max="100" style="width:200px;"></progress>
+<span id="currCharTimeout">000</span>
+&nbsp<span class="info" id="charTimedOutVal"></span> 
+&nbsp&nbsp&nbsp<span class="warning2" id="charTimedOutMsg"></span> 
+</p>
+<p>
+    <!-- <span class="possibleCharacters">  <!-- This will be populated dynamically. -->    </span> 
+   </p>
+<!-- </div> --> <!-- mikeOutput -->
+
+ </div> <!-- output -->
+
+<!-- mike -->
+<textarea>some stuff</textarea>
+
+<h2> Decoding Morse Code With JavaScript (sound Added)     &nbsp &nbsp
+Orginal Code by <a href="http://www.bennadel.com/blog/2267-decoding-morse-code-with-javascript.htm">Ben Nadel</a></p> </h2>
+ <a href="https://codeload.github.com/mstramb/jsMorseKeyer/zip/master">download</a>
+<a href="https://codeload.github.com/mstramb/jsMorseKeyer/zip/master">GitHub Source</a>
+<!-- <h2> <div class="msg" id="fox1">yyz The Quick Brown Fox Jumps Over The Lazy Dog</div> </h2> -->
+<p>
+
+<!--
+<button  id="butRecStart" style="width:50px;height:50px"  onclick="recStart()">R-Start</button>
+&nbsp&nbsp
+<button  id="butRecStop" style="width:50px;height:50px"  onclick="recStop()">R-Stop</button>
+&nbsp&nbsp&nbsp&nbsp
+<button  id="butPlayStart" style="width:50px;height:50px"  onclick="playStart()">P-Start</button>
+&nbsp&nbsp
+<button  id="butPlayStop" style="width:50px;height:50px"  onclick="playStop()">P-Stop</button>
+&nbsp&nbsp&nbsp
+<button  id="butMusicToggle" style="width:50px;height:50px"  onclick="musicToggle()">Music/Norm</button>
+-->
+<!-- Note:<input type="text" id="noteInput" value="C3" style="width:30px"></input> -->
+<!-- <button  id="but1" style="width:50px;height:50px" onclick="setInv1()">Test (setInv1)	</button> -->
+
+s u r w d k g o
+    <!-- BEGIN: Output. -->
+
+<p>
+
+    <div class="alphabet">
+        <h3> Morse Code Alphabet </h3>
+
+        <ul class="characters">
+            <!-- This will be populated dynamically. -->
+        </ul>
+
+        <!-- Define the template. --->
+        <script type="application/x-template" class="template">
+            <li>
+                <span class="character"></span>
+                <span class="sequence"></span>
+            </li>
+        </script>
+    </div>
+    <!-- END: Alphabet. -->
+
+ <script src="js/morse2.js"></script>
+
+</body>
+</html>
