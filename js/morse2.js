@@ -82,6 +82,7 @@
                 morsePatterns:      container.find( "span.morsePatterns" ),
                 totMsgTime:         container.find("span.morseMsgTime")
             };
+       // console
             domm = dom; // mike debug
 
             //domm.progress1.val(100)
@@ -144,7 +145,7 @@
                     }
 
                     // mike
- console.log("(morse) keyup  event.keyCode : " + event.keyCode + "(inputNoteLen) nll:"+nll);
+ // console.log("(morse) keyup  event.keyCode : " + event.keyCode + "(inputNoteLen) nll:"+nll);
                      if(event.keyCode === 17 || event.keyCode === 18) // alt, ctrl
                         var j = 0;
                       else

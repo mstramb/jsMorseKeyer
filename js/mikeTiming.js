@@ -44,7 +44,7 @@ for(var key in pats) {
   // console.log("--");
     
  morseElemTime[pats[key]] = tot;
-    //console.log(pats[key] + " : " + key + " tot:" + tot + " esp:" + esp + "  morseElemTime[pats[key]]:" +  morseElemTime[pats[key]]) ;
+    console.log(pats[key] + " : " + key + " tot:" + tot + " esp:" + esp + "  morseElemTime[pats[key]]:" +  morseElemTime[pats[key]]) ;
 
  //} // for(var x in pats)
 }

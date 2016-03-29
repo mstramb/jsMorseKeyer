@@ -128,6 +128,7 @@ var domm = '' ;
                 "-....-":   "-",    // THT
                 "-.-.-":    ";",    // NK
                 "-..-.":    "/",    // DN
+                "---...":   ":",    // OS
 				"...-.-":   "#SK",   //SK ----- End of contact (sent before call)
 
                 "-...-.-":  "#BK",  //BK ----- Invite receiving station to transmit

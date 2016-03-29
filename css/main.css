@@ -10,15 +10,13 @@
            float: left;
            width: 200px;
            height: 300px;
-
-
-            }
+         }
 
         div.output span.possibleCharacters {
             background-color: gold ;
             display: inline-block ;
             padding: 0px 7px 0px 7px ;
-            }
+           }
 
             div.output span.characters {
             font-size: 20px ;
