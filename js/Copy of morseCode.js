@@ -49,94 +49,58 @@ var domm = '' ;
             // as the relate the alpha-numeric characters that they
             // represent.
             this._patternMap = {
-                "-": "t",
-                ".": "e",
-
                 ".-": "a",
-                "-.": "n",
-                "..": "i",
-                "--": "m",
-
-                "...": "s",
-                "..-": "u",
-                ".-.": "r",
-                ".--": "w",
+                "-...": "b",
+                "-.-.": "c",
                 "-..": "d",
-                "-.-": "k",
+                ".": "e",
+                "..-.": "f",
                 "--.": "g",
+                "....": "h",
+                "..": "i",
+                ".---": "j",
+                "-.-": "k",
+                ".-..": "l",
+                "--": "m",
+                "-.": "n",
                 "---": "o",
-
-                "....": "h",     // 0
-                "...-": "v",     // 1
-                "..-.": "f",     // 2
-                "..--": "!IM",   // 3  
-                ".-..": "l",     // 4 
-                ".-.-": "#AA",   // 5
-                ".--.": "p",     // 6
-                ".---": "j",     // 7
-                "-...": "b",     // 8
-                "-..-": "x",     // 9
-                "-.-.": "c",     // 10
-                "-.--": "y",     // 11
-                "--..": "z",     // 12
-                "--.-": "q",     // 13
-                "---.": "!OE",   // 14
-                "----": "!MM",   // 15   F+
-
-                // --- 5 ----
-                ".....":    "5",    // 0
-                "....-":    "4",    // 1         
-                "...-.":    "#VE",  // 2 VE ----- Understood (VE)                                
-                "...--":    "3",    // 3
-                "..-..":    "#ID",  // 4
-                "...-.-":   "!SK",  // 5 
-                "...--.":   "!SG",  // 6
-                "..---":    "2",    // 7
-				".-...":    "#AS",  // 08 AS ----- Stand by
-				".-..-":    "!RA",  // 09 invalid !KA
-				".-.-.":    "#AR",	// 10 AR ----- End of message
-                ".-.--":    "!AW",	// 11 invalid AW
-				".--..":    "!WI",	// 12 invalid WI
-				".--.-":    "!WA",	// 13 invalid WA
-				".---.":    "!JE",	// 14 invalid JE
-                ".----":    "1",    // 15
-                "-....":    "6",    // 16
-                "-...-":    "#BT",  // 17 BT ----- Pause; Break For Text
-                  // invalid 18-20
-				"-..-.":    "!NR",	// 18 
-				"-..--":    "!NW",	// 19 
-				"-.-..":    "!ND",	// 20 
-                "-.-.-":    "#KA",  // 21 KA ----- Beginning of message
-                "-.--.":    "#KN",  // 22 KN ----- end of transmission
-                "-.---":    "!NO",	// 23 
-                "--...":    "7",	// 24 
-                  // invalid 25-27
-                "--..-":    "!GA",	// 25
-                "--.-.":    "!GN",	// 26
-                "--.--":    "!GM",	// 27
-                "---..":    "8",    // 28
-                "---.-":    "!OA",  // 29
-                "----.":    "9",    // 30
-                "-----":    "0",    // 31
-				
-                // 6's
-                "..--..":   "?",    // IMI
-                ".-.-.-":   ".",    // AAA
-                "--..--":   ",",    // GW
-                "-...-":    "=",    // BT
-                ".-.-.":    "+",    // AR
-                "-....-":   "-",    // THT
-                "-.-.-":    ";",    // NK
-                "-..-.":    "/",    // DN
-				"...-.-":   "#SK",   //SK ----- End of contact (sent before call)
-
-                "-...-.-":  "#BK",  //BK ----- Invite receiving station to transmit
-
-                // ---- 8 ----
-                "........": "#HH",   // 00 error      
-                "-.-..-..": "#CL",  //    CL ----- Going off the air (clear)
-				"-.-.--.-": "#CQ"  //    CQ ----- Calling any amateur radio station
-
+                ".--.": "p",
+                "--.-": "q",
+                ".-.": "r",
+                "...": "s",
+                "-": "t",
+                "..-": "u",
+                "...-": "v",
+                ".--": "w",
+                "-..-": "x",
+                "-.--": "y",
+                "--..": "z",
+                "-----": "0",
+                ".----": "1",
+                "..---": "2",
+                "...--": "3",
+                "....-": "4",
+                ".....": "5",
+                "-....": "6",
+                "--...": "7",
+                "---..": "8",
+                "----.": "9",
+                "...-.-": "#SK",
+                "..--..":  "?",
+				".-.-.":    "#AR",	  //AR ----- End of message
+				".-...":    "#AS",   //AS ----- Stand by
+				"-...-.-":  "#BK",  //BK ----- Invite receiving station to transmit
+                "-...-":    "#BT",  //BT ----- Pause; Break For Text
+                "-.-.-":    "#KA",  //KA ----- Beginning of message
+                "-.--.":    "#KN",  //KN ----- end of transmission
+                "-.-..-..": "#CL",  //CL ----- Going off the air (clear)
+				"-.-.--.-": "#CQ",  //CQ ----- Calling any amateur radio station
+				"-.--.":   "#KN",	//KN ----- Go only, invite a specific station to transmit
+				"...-.-":  "#SK",  //SK ----- End of contact (sent before call)
+				"...-.":    "#VE",   //VE ----- Understood (VE)
+                "........": "#HH"    // error      
+                //"----": "F+",   // mike 
+                //"..--": "F-"    // mike
             };
             //  the current, transient sequence being evaluated.
             this._sequence = "";
@@ -259,12 +223,12 @@ var domm = '' ;
                 // console.log("(morseCode.js) this._sequence:"+ this._sequence);
                 var character = this._patternMap[ this._sequence ];
                 // mike
-                console.log("(morseCode.js)(this.resolveSequence) character:"+character);
+                //console.log("(morseCode.js)(this.resolveSequence) character:"+character);
 
                 /*
                  if(character=="F+") {
                 // console.log("(old) BeepFreq:" + BeepFreq);
-                // BeepFreq +=100;
+                  BeepFreq +=100;
                  // console.log("(new)BeepFreq:" + BeepFreq);
                 // updateHTMLFields();
                  }
@@ -273,7 +237,7 @@ var domm = '' ;
                  //console.log("(old) BeepFreq:" + BeepFreq);
                  // BeepFreq -=100;
                  // console.log("(new)BeepFreq:" + BeepFreq);
-                //  updateHTMLFields();
+                  updateHTMLFields();
                 }
                 */
 

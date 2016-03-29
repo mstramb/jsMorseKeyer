@@ -144,7 +144,8 @@
                     }
 
                     // mike
-                     playnoteDn(event.keyCode,FREQDOWN)
+                     if(event.keyCode != 17) // ctrl
+                      playnoteDn(event.keyCode,FREQDOWN)
 
                     // Clear the resolution timer.
                     clearTimeout( resolveTimer );
@@ -181,6 +182,7 @@
 
 
                // console.log("(morse) keyup  event.keyCode : " + event.keyCode + "(inputNoteLen) nll:"+nll);
+               // 17 = CTRL
   			  // mikev = event // expose event globally
 
                     // Prevent any default action.
@@ -207,7 +209,7 @@
                      morseCode.dot();
 
 												// mike
-												playnoteUp(event.keyCode,FREQDOT)  // mike
+			          playnoteUp(event.keyCode,FREQDOT)  // mike
                         //console.log("--- DOT -- FREQDOT:"+ FREQDOT)
                    //     console.log("--- DOT -- keyPressDuration:"+ keyPressDuration  + " glb_dotDuration:" + glb_dotDuration );
                         dom.dash.empty();

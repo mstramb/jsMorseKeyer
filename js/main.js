@@ -3,10 +3,13 @@ console.log('- main.js - v1.0 3');
      // mike
  var nll = 0;
 
+        var wpmDot = {1:1200,2:600,3:400,5:240,6:200,7:171,8:150,9:133,10:120,11:109,12:100,13:92,14:86,15:80,16:75,17:70,18:67,19:63,20:60};
         //var BeepFreq = 261.63;   // c
-        var BeepFreq = 1100.0;   // c
-        var DOT_DURATION = 120;  // 250   1200 / DOT_DURATION = WPM   120=10wpm .. 60=20wpm etc
+        var BeepFreq = 1000.0;   // c
+
+        var DOT_DURATION = 171;  // 250   1200 / DOT_DURATION = WPM   120=10wpm .. 60=20wpm etc
          // 100 - 12 wpm
+
         var mikev = '' ;
         var FREQDOWN = 440.0;
         var FREQUP   = 340.0;
@@ -17,7 +20,9 @@ console.log('- main.js - v1.0 3');
         var SPACE_TIME = 0;
         var DASH_DURATION = 0;   // calculated from dot_duration
         //var MSGLEN = 100;   // to truncate / erase the message
-        var MSGLEN = 1000;   // to truncate / erase the message
+        
+        var MSGLEN = 100;   // to truncate / erase the message
+
         var MASTERGAIN = 0.7        
         var glb_totMsgTime = 0;
  
