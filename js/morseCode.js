@@ -240,7 +240,7 @@ var domm = '' ;
             // zop          
 
              this.InvalidSequence = function(seq){
-              console.log("(morseCode.js)(InvalidSequence) seq:"+seq);
+              //console.log("(morseCode.js)(InvalidSequence) seq:"+seq);
               return("!");
               }
 
@@ -259,7 +259,7 @@ var domm = '' ;
                 // console.log("(morseCode.js) this._sequence:"+ this._sequence);
                 var character = this._patternMap[ this._sequence ];
                 // mike
-                console.log("(morseCode.js)(this.resolveSequence) character:"+character);
+                //console.log("(morseCode.js)(this.resolveSequence) character:"+character);
 
                 /*
                  if(character=="F+") {

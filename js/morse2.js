@@ -144,8 +144,11 @@
                     }
 
                     // mike
-                     if(event.keyCode != 17) // ctrl
-                      playnoteDn(event.keyCode,FREQDOWN)
+ console.log("(morse) keyup  event.keyCode : " + event.keyCode + "(inputNoteLen) nll:"+nll);
+                     if(event.keyCode === 17 || event.keyCode === 18) // alt, ctrl
+                        var j = 0;
+                      else
+                       playnoteDn(event.keyCode,FREQDOWN)
 
                     // Clear the resolution timer.
                     clearTimeout( resolveTimer );
@@ -181,7 +184,7 @@
                   }   
 
 
-               // console.log("(morse) keyup  event.keyCode : " + event.keyCode + "(inputNoteLen) nll:"+nll);
+               
                // 17 = CTRL
   			  // mikev = event // expose event globally
 
