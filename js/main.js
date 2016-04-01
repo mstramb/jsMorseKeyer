@@ -7,7 +7,7 @@ console.log('- main.js - v1.0 3');
         //var BeepFreq = 261.63;   // c
         var BeepFreq = 1000.0;   // c
 
-        var DOT_DURATION = 100;  // 250   1200 / DOT_DURATION = WPM   120=10wpm .. 60=20wpm etc
+        var DOT_DURATION = 240;  // 250   1200 / DOT_DURATION = WPM   120=10wpm .. 60=20wpm etc
          // 100 - 12 wpm
 
         var mikev = '' ;
