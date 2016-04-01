@@ -1,3 +1,9 @@
+//
+//
+// Support functions for the time-out bars
+//
+//
+
 // console.log("(progress.js)");
 
 // var progTimeout = 15;  // for SPACETIME 2000

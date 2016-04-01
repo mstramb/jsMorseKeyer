@@ -16,7 +16,7 @@ console.log('- main.js - v1.0 3');
         var FREQDOT  = 900.0;
         var FREQDASH = 300.0;
         var tcount = 0;
-        var spcProgBarEnabled = false;  //zop
+        var spcProgBarEnabled = true;  //zop
         var SPACE_TIME = 0;
         var DASH_DURATION = 0;   // calculated from dot_duration
         //var MSGLEN = 100;   // to truncate / erase the message

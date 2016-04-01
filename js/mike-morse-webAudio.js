@@ -39,8 +39,8 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
                 oscillator = context.createOscillator();
 
-                 oscillator.type = 'square';
-                //oscillator.type = 'sine';
+                // oscillator.type = 'square';
+                oscillator.type = 'sine';
 
                // oscillator.frequency.value = frequency;
 
